@@ -2,21 +2,166 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Accommodation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation Listing</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            background-image: url('home-background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Container styling for the form */
+        .container {
+            background: rgba(255, 255, 255, 0.9); 
+            width: 100%;
+            max-width: 280px; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Title styling */
+        .form-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d2d2d;
+            margin-bottom: 15px;
+        }
+
+        /* Form elements styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; 
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background-color: #f4f7fc;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007BFF;
+            background-color: #fff;
+        }
+
+        button {
+            background: #007BFF;
+            color: white;
+            padding: 8px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Button styles for back navigation */
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: 600;
+            padding: 8px 12px;
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 260px; 
+            }
+
+            .form-title {
+                font-size: 16px;
+            }
+
+            button, .btn-back {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Create a New Accommodation</h1>
-    <form action="{{ url_for('create_accommodation') }}" method="POST">
-        <label>Name:</label>
-        <input type="text" name="name" required><br><br>
-        <label>Location:</label>
-        <input type="text" name="location" required><br><br>
-        <label>Price:</label>
-        <input type="number" name="price" step="0.01" required><br><br>
-        <label>Amenities (comma-separated):</label>
-        <input type="text" name="amenities" required><br><br>
-        <button type="submit">Create</button>
-    </form>
-    <a href="{{ url_for('list_accommodations') }}">Back to List</a>
+    <div class="container">
+        <div class="form-title">Accommodation Listing</div>
+        <form action="{{ url_for('create_accommodation') }}" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required><br><br>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" step="0.01" required><br><br>
+            </div>
+
+            <div class="form-group">
+                <label for="amenities">Amenities (comma-separated):</label>
+                <input type="text" id="amenities" name="amenities" required><br><br>
+            </div>
+
+            <button type="submit">Create</button>
+        </form>
+        <a href="{{ url_for('list_accommodations') }}" class="btn-back">Back to List</a>
+    </div>
 </body>
 </html>
